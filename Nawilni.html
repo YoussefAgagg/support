@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help &amp; Support – Nawilni</title>
+<meta name="description" content="Help for Nawilni, the app that sends files directly between phones over Wi-Fi: how to send, where files go, what to do when phones do not find each other, and how to contact the developer.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbfdf9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111412" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%230b6e4f'/%3E%3Cpath fill='%23fff' d='M200 162 265 237H223V350H175V237H133ZM313 350 247 275H289V162H337V275H379Z'/%3E%3C/svg%3E">
+<!--
+  Help and support page of Nawilni. Its address is the Support URL in
+  App Store Connect and the Website in the Play Console.
+
+  This file is complete on its own: no other file, no font, no script from
+  another site. It looks like the privacy policy page and uses the same
+  colours.
+
+  Where it goes on the web host: in a folder "support" next to the privacy
+  policy page, so that the privacy page is at the root of the site and this
+  page at <site>/support/. The links to the privacy policy are "../#en" and
+  "../#ar", so they work only in that layout (not when this file is opened
+  from the repository). docs/09-release.md §6.1 has the steps.
+
+  Both languages are in this file. With JavaScript the page shows one of
+  them; without it, both, English first. A link that ends in #ar opens the
+  Arabic text, #en the English text. A link to a section works too, for
+  example #en-find or #ar-find.
+
+  Every button name and message in quotes is copied from the apps
+  (android/app/src/main/res/values/strings.xml and ios/Nawilni). When one of
+  them changes in the app, change it here in BOTH languages and change the
+  two "Last updated" dates.
+-->
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fbfdf9;
+    --text: #191c1a;
+    --muted: #404943;
+    --faint: #5c665f;
+    --line: #d5dfd7;
+    --accent: #0b6e4f;
+    --on-accent: #ffffff;
+    --tint: #e6f4ec;
+    --tint-line: #b9dfca;
+    --card: #f2f6f1;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111412;
+      --text: #e1e3df;
+      --muted: #bfc9c1;
+      --faint: #98a39b;
+      --line: #343c37;
+      --accent: #87d6b4;
+      --on-accent: #003828;
+      --tint: #15261e;
+      --tint-line: #25493a;
+      --card: #191d1a;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif;
+    overflow-wrap: break-word;
+  }
+  [lang="ar"] {
+    font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans Arabic", "Geeza Pro", Tahoma, Arial, sans-serif;
+    line-height: 1.95;
+  }
+
+  .wrap { max-width: 46rem; margin-inline: auto; padding: 0 20px 80px; }
+
+  /* Top bar: the app, and the language switch */
+  .bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 650; font-size: 1.05rem; line-height: 1.3; }
+  .brand svg { width: 40px; height: 40px; border-radius: 10px; flex: none; }
+  .brand small { display: block; color: var(--faint); font-weight: 400; font-size: .85rem; line-height: 1.5; }
+  .langs { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; flex: none; }
+  .langs a {
+    padding: 5px 13px; border-radius: 999px;
+    color: var(--muted); text-decoration: none; font-size: .9rem; line-height: 1.5;
+  }
+  .langs a:hover { color: var(--text); }
+  .langs a[aria-current="true"] { background: var(--accent); color: var(--on-accent); }
+
+  /* The page */
+  article { scroll-margin-top: 96px; }
+  article:not([hidden]) + article { margin-top: 72px; border-top: 1px solid var(--line); }   /* both shown: no script */
+  section { scroll-margin-top: 24px; }
+  .title { padding-block: 44px 4px; }
+  h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.15; letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  [lang="ar"] h1 { line-height: 1.5; letter-spacing: 0; }
+  .updated { margin: 0; color: var(--faint); font-size: .95rem; }
+
+  h2 { margin: 52px 0 14px; font-size: 1.3rem; line-height: 1.35; text-wrap: balance; }
+  [lang="ar"] h2 { line-height: 1.6; }
+  h3 { margin: 26px 0 6px; font-size: 1.02rem; line-height: 1.5; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 14px; padding-inline-start: 1.3em; }
+  li { margin-bottom: 8px; }
+  li::marker { color: var(--accent); }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  b { font-weight: 650; }
+
+  /* A word that is on a button or a screen of the app */
+  .ui { font-weight: 650; }
+
+  /* Help box at the top */
+  .help {
+    margin-block: 28px 0; padding: 20px 22px;
+    background: var(--tint); border: 1px solid var(--tint-line); border-radius: 16px;
+  }
+  .help h2 { margin: 0 0 6px; font-size: 1rem; color: var(--accent); }
+  .help p { margin: 0 0 14px; }
+  .help p:last-child { margin-bottom: 0; }
+  .mail {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 18px; border-radius: 999px;
+    background: var(--accent); color: var(--on-accent);
+    font-weight: 600; text-decoration: none; line-height: 1.4;
+  }
+  .mail:hover { filter: brightness(1.08); }
+  .mail svg { width: 18px; height: 18px; flex: none; }
+  .addr { color: var(--muted); font-size: .95rem; margin-inline-start: 10px; white-space: nowrap; }
+
+  /* Contents */
+  .toc { margin-top: 32px; }
+  .toc h2 { margin: 0 0 10px; font-size: .9rem; color: var(--faint); font-weight: 600; letter-spacing: .02em; }
+  [lang="en"] .toc h2 { text-transform: uppercase; }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .toc li { margin: 0; }
+  .toc a {
+    display: block; padding: 5px 13px;
+    border: 1px solid var(--line); border-radius: 999px;
+    color: var(--text); text-decoration: none; font-size: .92rem; line-height: 1.5;
+  }
+  .toc a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Three steps */
+  .steps { list-style: none; margin: 18px 0 14px; padding: 0; display: grid; gap: 10px; }
+  .steps li {
+    margin: 0; padding: 14px 18px;
+    display: grid; grid-template-columns: 2rem 1fr; gap: 12px; align-items: start;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  }
+  .steps .n {
+    width: 2rem; height: 2rem; border-radius: 999px;
+    display: grid; place-items: center;
+    background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: .95rem; line-height: 1;
+  }
+  .steps p { margin: 0; }
+  .steps p + p { margin-top: 4px; color: var(--muted); font-size: .95rem; }
+
+  /* Platform tag */
+  .tag {
+    display: inline-block; margin-inline-start: 6px; padding: 0 8px;
+    border: 1px solid var(--line); border-radius: 999px;
+    color: var(--faint); font-size: .72rem; font-weight: 600; line-height: 1.7; vertical-align: 1px;
+  }
+
+  /* Boxes with one platform each */
+  .platforms { display: grid; gap: 10px; margin: 14px 0; }
+  .platforms > div { padding: 14px 18px; border: 1px solid var(--line); border-radius: 14px; }
+  .platforms h3 { margin: 0 0 6px; }
+  .platforms p:last-child, .platforms ul:last-child { margin-bottom: 0; }
+
+  /* A message that the app shows, as it appears on the screen */
+  .msg {
+    margin: 26px 0 8px; padding: 10px 16px;
+    border-inline-start: 3px solid var(--accent); border-radius: 4px;
+    background: var(--card); font-weight: 600; line-height: 1.55;
+  }
+  .msg + p, .msg + p + p { color: var(--muted); }
+
+  .note { color: var(--muted); font-size: .95rem; }
+
+  .contact { padding: 18px 22px; border: 1px solid var(--line); border-radius: 14px; }
+  .contact p { margin: 0 0 12px; }
+  .contact ul { margin-bottom: 14px; }
+
+  @media (max-width: 520px) {
+    .addr { display: block; margin: 10px 0 0; }
+  }
+  @media print {
+    .langs, .toc, .mail { display: none; }
+    body { font-size: 11pt; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="bar">
+    <div class="brand">
+      <svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" fill="#0b6e4f"/><path fill="#fff" d="M200 162 265 237H223V350H175V237H133ZM313 350 247 275H289V162H337V275H379Z"/></svg>
+      <span>Nawilni <small lang="ar">ناولني</small></span>
+    </div>
+    <nav class="langs" aria-label="Language">
+      <a href="#en" data-lang="en" lang="en" hreflang="en">English</a>
+      <a href="#ar" data-lang="ar" lang="ar" hreflang="ar">العربية</a>
+    </nav>
+  </div>
+
+  <!-- ================================ English ================================ -->
+  <article id="en" lang="en" dir="ltr">
+    <header class="title">
+      <h1>Help &amp; Support</h1>
+      <p class="updated">Nawilni · Last updated: 25 November 2026</p>
+    </header>
+
+    <div class="help">
+      <h2>Need help?</h2>
+      <p>Most answers are on this page. If yours is not, write to the developer. Every message is read.</p>
+      <p>
+        <a class="mail" href="mailto:youssefagagg@gmail.com?subject=Nawilni%20support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Write an e-mail</a>
+        <span class="addr">youssefagagg@gmail.com</span>
+      </p>
+    </div>
+
+    <nav class="toc" aria-label="On this page">
+      <h2>On this page</h2>
+      <ol>
+        <li><a href="#en-start">Send files</a></li>
+        <li><a href="#en-files">Where are my files?</a></li>
+        <li><a href="#en-find">Phones do not find each other</a></li>
+        <li><a href="#en-hotspot">No Wi-Fi</a></li>
+        <li><a href="#en-transfer">During a transfer</a></li>
+        <li><a href="#en-messages">Messages</a></li>
+        <li><a href="#en-privacy">Privacy</a></li>
+        <li><a href="#en-requirements">Requirements</a></li>
+        <li><a href="#en-contact">Contact</a></li>
+      </ol>
+    </nav>
+
+    <section id="en-start">
+      <h2>1. Send files in three steps</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><div><p>Install Nawilni on both phones and connect them to the same Wi-Fi.</p><p>No Wi-Fi? See <a href="#en-hotspot">section 4</a>.</p></div></li>
+        <li><span class="n">2</span><div><p>On the phone that gets the files, tap <span class="ui">Receive</span>.</p><p>It shows its name, a QR code, and waits.</p></div></li>
+        <li><span class="n">3</span><div><p>On the other phone, tap <span class="ui">Send</span>, then <span class="ui">Choose files</span>, then the receiving phone under <span class="ui">Nearby phones</span>.</p><p>The receiving phone shows the files. Tap <span class="ui">Accept</span>.</p></div></li>
+      </ol>
+      <p>This works from Android to iPhone, from iPhone to Android, between two iPhones and between two Android phones. iPad works like iPhone.</p>
+      <p>You can also start from another app: select photos or files in your gallery, Photos, Files or file manager, tap <span class="ui">Share</span> and choose <span class="ui">Nawilni</span>. The app opens with the files ready to send.</p>
+    </section>
+
+    <section id="en-files">
+      <h2>2. Where are my files?</h2>
+      <div class="platforms">
+        <div>
+          <h3>Android</h3>
+          <p>In the <span class="ui">Download/Nawilni</span> folder. Open it with the Files app or the file manager of your phone. In Nawilni, open <span class="ui">History</span> and then the transfer. Next to each received file you can tap <span class="ui">Open</span> or <span class="ui">Share</span>.</p>
+        </div>
+        <div>
+          <h3>iPhone and iPad</h3>
+          <p>In the Files app, under <span class="ui">On My iPhone</span> (or <span class="ui">On My iPad</span>) → <span class="ui">Nawilni</span>.</p>
+          <p>In Nawilni, open <span class="ui">History</span> and then the transfer. Next to each received file you can tap <span class="ui">Open</span> or the share button. Next to a photo or a video, the photo button saves it to the Photos app.</p>
+        </div>
+      </div>
+      <p class="note"><b>Before you delete the app on iPhone or iPad:</b> received files are in the app's own folder, so deleting the app deletes them too. Move the files you want to keep first. On Android they stay in <span class="ui">Download/Nawilni</span>.</p>
+    </section>
+
+    <section id="en-find">
+      <h2>3. The phones do not find each other</h2>
+      <p>The sending phone lists only phones that have the <span class="ui">Receive</span> screen open. If yours stays at <span class="ui">Looking for phones that have Receive open…</span>, check these in order:</p>
+      <ol>
+        <li><b>Receive is open</b> on the phone that gets the files, and the screen is on.</li>
+        <li><b>Same Wi-Fi.</b> Both phones are on the same Wi-Fi network, with the same name. A guest network often keeps devices apart, even in your own home.</li>
+        <li><b>VPN off</b> on both phones, for the time of the transfer.</li>
+        <li><b>iPhone and iPad: Local Network is allowed.</b> Open the Settings app → <span class="ui">Privacy &amp; Security</span> → <span class="ui">Local Network</span> and turn <span class="ui">Nawilni</span> on. Without it, iOS does not let the app see other phones.</li>
+        <li><b>Use the QR code.</b> On the sending phone, under <span class="ui">Phone not in the list?</span>, tap <span class="ui">Scan its QR code</span> and scan the code on the receiving phone. Or tap <span class="ui">Type its address</span> and type the address that the <span class="ui">Receive</span> screen shows, for example <span dir="ltr">192.168.1.23:51234</span>.</li>
+      </ol>
+      <p>Wi-Fi in hotels, cafés, schools and offices often does not let phones reach each other at all. Then neither the list nor the QR code helps: use a hotspot (<a href="#en-hotspot">section 4</a>).</p>
+      <p>If the camera does not open for the QR code, allow it for Nawilni in the phone's settings. The camera is used only to read the code.</p>
+    </section>
+
+    <section id="en-hotspot">
+      <h2>4. No Wi-Fi? Use a hotspot</h2>
+      <p>One phone makes a Wi-Fi network, the other joins it. No internet is needed, and the files go straight from one phone to the other.</p>
+      <div class="platforms">
+        <div>
+          <h3>An Android phone makes it</h3>
+          <ol>
+            <li>On the Android phone, open <span class="ui">Receive</span> and tap <span class="ui">Make this phone a hotspot</span>.</li>
+            <li>It shows a code for its network, the network name and the password. On the other phone, scan that code with the camera app, or join the network by hand in the Wi-Fi settings.</li>
+            <li>On the other phone, open Nawilni, tap <span class="ui">Send</span>, and tap the Android phone in the list or scan the code at the top of its <span class="ui">Receive</span> screen.</li>
+          </ol>
+          <p>If the hotspot does not start, turn Wi-Fi on (and Location, on Android 8 to 12) and try again.</p>
+        </div>
+        <div>
+          <h3>An iPhone makes it</h3>
+          <p>iOS does not let apps start a hotspot. Turn on Settings → <span class="ui">Personal Hotspot</span> on the iPhone and join that network from the other phone. Then open <span class="ui">Receive</span> and <span class="ui">Send</span> as usual.</p>
+        </div>
+      </div>
+      <p class="note">Nawilni does not use mobile data for the files. Other apps on the phone that joined may use the hotspot's internet, as with any hotspot.</p>
+    </section>
+
+    <section id="en-transfer">
+      <h2>5. During a transfer</h2>
+
+      <h3>iPhone and iPad: keep Nawilni on the screen <span class="tag">iPhone</span></h3>
+      <p>iOS pauses apps that leave the screen, and their connections close. Keep Nawilni open until the transfer finishes; the screen does not turn off by itself while a transfer runs. If you leave the app anyway, nothing is lost: see <i>A transfer stopped</i> below.</p>
+
+      <h3>Android: it continues in the background <span class="tag">Android</span></h3>
+      <p>The transfer continues when you leave the app or the screen turns off, and a notification shows its progress. Some phones, for example from Xiaomi, Oppo, Vivo or Huawei, stop apps in the background to save battery. If a transfer stops when the screen goes off, allow Nawilni to run in the background: in the phone's settings, open <span class="ui">Apps</span> → <span class="ui">Nawilni</span> → <span class="ui">Battery</span> and choose the option without restrictions. The names differ from phone to phone.</p>
+
+      <h3>A transfer stopped</h3>
+      <p>Nothing starts again from zero. If the connection drops, the sending phone tries again by itself for about two minutes. After that:</p>
+      <ol>
+        <li>Open <span class="ui">Receive</span> again on the receiving phone.</li>
+        <li>On the sending phone, open <span class="ui">History</span>, open the transfer and tap <span class="ui">Send what is missing again</span>. Or choose the same files again and send them to the same phone.</li>
+      </ol>
+      <p>Each file continues where it stopped. The part that already arrived is kept for 7 days.</p>
+
+      <h3>How big can a file be?</h3>
+      <p>There is no limit in the app. The receiving phone needs enough free space, and it checks that before anything is sent.</p>
+
+      <h3>It is slow</h3>
+      <p>The speed depends on the Wi-Fi network and on both phones. Move closer to the router, or away from a network that many people use at the same time, or try a hotspot (<a href="#en-hotspot">section 4</a>).</p>
+    </section>
+
+    <section id="en-messages">
+      <h2>6. Messages you may see</h2>
+
+      <p class="msg">… files are already on this phone</p>
+      <p>Nawilni remembers what this phone received before, and finds those files before they are sent. Choose <span class="ui">Skip them</span>, <span class="ui">Receive again as copies</span> or <span class="ui">Replace the old files</span>. What happens by default is in <span class="ui">Settings</span> → <span class="ui">When a file was already received</span>.</p>
+
+      <p class="msg">Stopped for your safety. The device that answered is not the phone this app expected: its security key is different.</p>
+      <p>Each phone has its own security key, and Nawilni remembers the key of every phone you sent to. The other phone now has a different one. Usually that is because Nawilni was deleted and installed again on it, or its data was erased. It can also mean that another device answered in its place. Nothing was sent.</p>
+      <p>To send to it again, scan the QR code on its <span class="ui">Receive</span> screen. The app then remembers the new key.</p>
+
+      <p class="msg">Be careful: a device with this name sent files before, but its security key was different.</p>
+      <p>The same check, on the receiving phone. It is normal after the sender installed Nawilni again. Tap <span class="ui">Accept</span> only if you know who is sending.</p>
+
+      <p class="msg">Nobody accepted in time.</p>
+      <p>The receiving phone shows the offered files and waits for <span class="ui">Accept</span>. Send again, and accept on the other phone.</p>
+
+      <p class="msg">Not enough free space on this phone. · The other phone does not have enough free space.</p>
+      <p>Free some space on the phone that receives, or send fewer files at once.</p>
+
+      <p class="msg">The other phone uses a version that is not compatible. Update both apps.</p>
+      <p>Update Nawilni on both phones from Google Play and the App Store.</p>
+
+      <p class="msg">The other phone is busy with another transfer.</p>
+      <p>Wait until that transfer ends, then send again.</p>
+    </section>
+
+    <section id="en-privacy">
+      <h2>7. Privacy</h2>
+      <ul>
+        <li>No account, no ads, no analytics. The developer receives no data from the app.</li>
+        <li>Files go only to the phone that you choose, and every connection between the two phones is encrypted.</li>
+        <li>Other phones see the name of your phone. Change it in <span class="ui">Settings</span> → <span class="ui">Name of this phone</span>.</li>
+        <li>To remove a transfer from the list, open it in <span class="ui">History</span> and tap <span class="ui">Remove from history</span>. To delete the parts of unfinished transfers, open <span class="ui">Settings</span> → <span class="ui">Incomplete transfers</span> → <span class="ui">Delete them</span>.</li>
+      </ul>
+      <p>The details are in the <a href="../#en">privacy policy</a>.</p>
+    </section>
+
+    <section id="en-requirements">
+      <h2>8. Requirements</h2>
+      <ul>
+        <li>Android 8.0 or later.</li>
+        <li>iPhone or iPad with iOS or iPadOS 17 or later.</li>
+        <li>Nawilni on both devices.</li>
+        <li>Free, with no ads and no in-app purchases.</li>
+        <li>The app's screens are in English for now. This page is in English and Arabic.</li>
+      </ul>
+    </section>
+
+    <section id="en-contact">
+      <h2>9. Contact</h2>
+      <div class="contact">
+        <p>Write to <a href="mailto:youssefagagg@gmail.com?subject=Nawilni%20support">youssefagagg@gmail.com</a>. It helps to know:</p>
+        <ul>
+          <li>the two phones: model, and Android or iOS version;</li>
+          <li>the version of Nawilni, at the bottom of <span class="ui">Settings</span>;</li>
+          <li>what you did, and what happened;</li>
+          <li>the exact message, or a screenshot.</li>
+        </ul>
+        <p>Nawilni is made by Youssef Agagg.</p>
+      </div>
+    </section>
+  </article>
+
+  <!-- ================================ العربية ================================ -->
+  <article id="ar" lang="ar" dir="rtl">
+    <header class="title">
+      <h1>المساعدة والدعم</h1>
+      <p class="updated">ناولني · آخر تحديث: 25 نوفمبر 2026</p>
+    </header>
+
+    <div class="help">
+      <h2>تحتاج إلى مساعدة؟</h2>
+      <p>أغلب الإجابات في هذه الصفحة. وإن لم تجد إجابتك، فاكتب إلى المطوّر. كل رسالة تُقرأ.</p>
+      <p>
+        <a class="mail" href="mailto:youssefagagg@gmail.com?subject=Nawilni%20support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>أرسل بريداً إلكترونياً</a>
+        <span class="addr" lang="en" dir="ltr">youssefagagg@gmail.com</span>
+      </p>
+    </div>
+
+    <nav class="toc" aria-label="في هذه الصفحة">
+      <h2>في هذه الصفحة</h2>
+      <ol>
+        <li><a href="#ar-start">إرسال الملفات</a></li>
+        <li><a href="#ar-files">أين ملفاتي؟</a></li>
+        <li><a href="#ar-find">الهاتفان لا يجد أحدهما الآخر</a></li>
+        <li><a href="#ar-hotspot">بلا واي فاي</a></li>
+        <li><a href="#ar-transfer">أثناء النقل</a></li>
+        <li><a href="#ar-messages">الرسائل</a></li>
+        <li><a href="#ar-privacy">الخصوصية</a></li>
+        <li><a href="#ar-requirements">المتطلبات</a></li>
+        <li><a href="#ar-contact">التواصل</a></li>
+      </ol>
+    </nav>
+
+    <section id="ar-start">
+      <h2>1. أرسل الملفات في ثلاث خطوات</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><div><p>ثبّت ناولني على الهاتفين، واتصل بهما بشبكة الواي فاي نفسها.</p><p>لا توجد شبكة واي فاي؟ راجع <a href="#ar-hotspot">القسم 4</a>.</p></div></li>
+        <li><span class="n">2</span><div><p>على الهاتف الذي سيستلم الملفات، اضغط <span class="ui" lang="en" dir="ltr">Receive</span>.</p><p>يظهر اسمه ورمز <span lang="en" dir="ltr">QR</span>، وينتظر.</p></div></li>
+        <li><span class="n">3</span><div><p>على الهاتف الآخر، اضغط <span class="ui" lang="en" dir="ltr">Send</span>، ثم <span class="ui" lang="en" dir="ltr">Choose files</span>، ثم اضغط على الهاتف المستقبِل تحت <span class="ui" lang="en" dir="ltr">Nearby phones</span>.</p><p>تظهر الملفات على الهاتف المستقبِل. اضغط <span class="ui" lang="en" dir="ltr">Accept</span>.</p></div></li>
+      </ol>
+      <p>يعمل هذا من أندرويد إلى آيفون، ومن آيفون إلى أندرويد، وبين هاتفَي آيفون، وبين هاتفَي أندرويد. والآيباد يعمل مثل الآيفون.</p>
+      <p>ويمكنك أيضاً أن تبدأ من تطبيق آخر: اختر الصور أو الملفات من المعرض أو تطبيق الصور أو تطبيق الملفات أو مدير الملفات، واضغط «مشاركة»، ثم اختر <span class="ui" lang="en" dir="ltr">Nawilni</span>. يفتح التطبيق والملفات جاهزة للإرسال.</p>
+    </section>
+
+    <section id="ar-files">
+      <h2>2. أين ملفاتي؟</h2>
+      <div class="platforms">
+        <div>
+          <h3>أندرويد</h3>
+          <p>في مجلد <span class="ui" lang="en" dir="ltr">Download/Nawilni</span>. افتحه بتطبيق الملفات أو مدير الملفات في هاتفك. وفي ناولني افتح <span class="ui" lang="en" dir="ltr">History</span> ثم عملية النقل. بجانب كل ملف مستلَم يمكنك الضغط على <span class="ui" lang="en" dir="ltr">Open</span> أو <span class="ui" lang="en" dir="ltr">Share</span>.</p>
+        </div>
+        <div>
+          <h3>آيفون وآيباد</h3>
+          <p>في تطبيق «الملفات»، تحت «على الـ iPhone» (أو «على الـ iPad») ← <span class="ui" lang="en" dir="ltr">Nawilni</span>.</p>
+          <p>وفي ناولني افتح <span class="ui" lang="en" dir="ltr">History</span> ثم عملية النقل. بجانب كل ملف مستلَم يمكنك الضغط على <span class="ui" lang="en" dir="ltr">Open</span> أو على زر المشاركة. وبجانب الصورة أو الفيديو يوجد زر الصور الذي يحفظه في تطبيق «الصور».</p>
+        </div>
+      </div>
+      <p class="note"><b>قبل أن تحذف التطبيق من الآيفون أو الآيباد:</b> الملفات المستلمة موجودة في مجلد التطبيق نفسه، لذلك يحذفها حذف التطبيق أيضاً. انقل الملفات التي تريد الاحتفاظ بها أولاً. أما على أندرويد فتبقى في <span class="ui" lang="en" dir="ltr">Download/Nawilni</span>.</p>
+    </section>
+
+    <section id="ar-find">
+      <h2>3. الهاتفان لا يجد أحدهما الآخر</h2>
+      <p>يعرض الهاتف المرسِل فقط الهواتف التي فتحت شاشة <span class="ui" lang="en" dir="ltr">Receive</span>. إذا بقي هاتفك على <span class="ui" lang="en" dir="ltr">Looking for phones that have Receive open…</span> فتحقّق من هذه الأمور بالترتيب:</p>
+      <ol>
+        <li><b>شاشة <span lang="en" dir="ltr">Receive</span> مفتوحة</b> على الهاتف الذي سيستلم الملفات، والشاشة مضاءة.</li>
+        <li><b>الشبكة نفسها.</b> الهاتفان على شبكة الواي فاي نفسها، بالاسم نفسه. شبكة الضيوف كثيراً ما تفصل الأجهزة عن بعضها، حتى في بيتك.</li>
+        <li><b>أوقف الـ <span lang="en" dir="ltr">VPN</span></b> على الهاتفين أثناء النقل.</li>
+        <li><b>آيفون وآيباد: إذن الشبكة المحلية.</b> افتح تطبيق «الإعدادات» ← «الخصوصية والأمن» ← «الشبكة المحلية»، وفعّل <span class="ui" lang="en" dir="ltr">Nawilni</span>. بدون هذا الإذن لا يسمح iOS للتطبيق برؤية الهواتف الأخرى.</li>
+        <li><b>استخدم رمز <span lang="en" dir="ltr">QR</span>.</b> على الهاتف المرسِل، تحت <span class="ui" lang="en" dir="ltr">Phone not in the list?</span>، اضغط <span class="ui" lang="en" dir="ltr">Scan its QR code</span> وامسح الرمز الظاهر على الهاتف المستقبِل. أو اضغط <span class="ui" lang="en" dir="ltr">Type its address</span> واكتب العنوان الظاهر على شاشة <span class="ui" lang="en" dir="ltr">Receive</span>، مثل <span dir="ltr">192.168.1.23:51234</span>.</li>
+      </ol>
+      <p>شبكات الواي فاي في الفنادق والمقاهي والمدارس والمكاتب كثيراً ما تمنع الهواتف من الوصول إلى بعضها تماماً. عندها لا تفيد القائمة ولا رمز <span lang="en" dir="ltr">QR</span>: استخدم نقطة اتصال (<a href="#ar-hotspot">القسم 4</a>).</p>
+      <p>إذا لم تفتح الكاميرا لمسح الرمز، فاسمح بها لناولني في إعدادات الهاتف. تُستخدم الكاميرا فقط لقراءة الرمز.</p>
+    </section>
+
+    <section id="ar-hotspot">
+      <h2>4. لا توجد شبكة واي فاي؟ استخدم نقطة اتصال</h2>
+      <p>ينشئ أحد الهاتفين شبكة واي فاي، ويتصل بها الآخر. لا حاجة إلى الإنترنت، وتنتقل الملفات مباشرة من هاتف إلى الآخر.</p>
+      <div class="platforms">
+        <div>
+          <h3>هاتف أندرويد ينشئها</h3>
+          <ol>
+            <li>على هاتف الأندرويد، افتح <span class="ui" lang="en" dir="ltr">Receive</span> واضغط <span class="ui" lang="en" dir="ltr">Make this phone a hotspot</span>.</li>
+            <li>يظهر رمز لشبكته، واسم الشبكة وكلمة المرور. على الهاتف الآخر، امسح هذا الرمز بتطبيق الكاميرا، أو اتصل بالشبكة يدوياً من إعدادات الواي فاي.</li>
+            <li>على الهاتف الآخر، افتح ناولني واضغط <span class="ui" lang="en" dir="ltr">Send</span>، ثم اضغط على هاتف الأندرويد في القائمة، أو امسح الرمز الظاهر أعلى شاشة <span class="ui" lang="en" dir="ltr">Receive</span> عنده.</li>
+          </ol>
+          <p>إذا لم تبدأ نقطة الاتصال، فشغّل الواي فاي (والموقع على أندرويد 8 إلى 12) وحاول مرة أخرى.</p>
+        </div>
+        <div>
+          <h3>هاتف آيفون ينشئها</h3>
+          <p>لا يسمح iOS للتطبيقات بتشغيل نقطة الاتصال. شغّل «الإعدادات» ← «نقطة الاتصال الشخصية» على الآيفون، واتصل بهذه الشبكة من الهاتف الآخر. ثم افتح <span class="ui" lang="en" dir="ltr">Receive</span> و<span class="ui" lang="en" dir="ltr">Send</span> كالمعتاد.</p>
+        </div>
+      </div>
+      <p class="note">ناولني لا يستخدم باقة الإنترنت لنقل الملفات. أما التطبيقات الأخرى على الهاتف المتصل فقد تستخدم إنترنت نقطة الاتصال، كما يحدث مع أي نقطة اتصال.</p>
+    </section>
+
+    <section id="ar-transfer">
+      <h2>5. أثناء النقل</h2>
+
+      <h3>آيفون وآيباد: أبقِ ناولني على الشاشة <span class="tag">آيفون</span></h3>
+      <p>يوقف iOS التطبيقات التي تغادر الشاشة، فتنقطع اتصالاتها. أبقِ ناولني مفتوحاً حتى ينتهي النقل؛ ولن تنطفئ الشاشة من تلقاء نفسها ما دام النقل جارياً. وإذا غادرت التطبيق مع ذلك فلن يضيع شيء: راجع «توقّف النقل» أدناه.</p>
+
+      <h3>أندرويد: يستمر في الخلفية <span class="tag">أندرويد</span></h3>
+      <p>يستمر النقل عندما تغادر التطبيق أو تنطفئ الشاشة، ويظهر إشعار بتقدّمه. بعض الهواتف، مثل هواتف شاومي وأوبو وفيفو وهواوي، توقف التطبيقات في الخلفية لتوفير البطارية. إذا توقف النقل عند انطفاء الشاشة، فاسمح لناولني بالعمل في الخلفية: من إعدادات الهاتف افتح «التطبيقات» ← <span class="ui" lang="en" dir="ltr">Nawilni</span> ← «البطارية»، واختر الخيار الذي بلا قيود. تختلف الأسماء من هاتف إلى آخر.</p>
+
+      <h3>توقّف النقل</h3>
+      <p>لا شيء يبدأ من الصفر. إذا انقطع الاتصال يحاول الهاتف المرسِل من جديد تلقائياً لمدة دقيقتين تقريباً. وبعد ذلك:</p>
+      <ol>
+        <li>افتح <span class="ui" lang="en" dir="ltr">Receive</span> مرة أخرى على الهاتف المستقبِل.</li>
+        <li>على الهاتف المرسِل، افتح <span class="ui" lang="en" dir="ltr">History</span>، ثم عملية النقل، واضغط <span class="ui" lang="en" dir="ltr">Send what is missing again</span>. أو اختر الملفات نفسها مرة أخرى وأرسلها إلى الهاتف نفسه.</li>
+      </ol>
+      <p>يُكمل كل ملف من حيث توقف. ويُحتفظ بالجزء الذي وصل لمدة 7 أيام.</p>
+
+      <h3>ما أكبر حجم للملف؟</h3>
+      <p>لا يوجد حد في التطبيق. يحتاج الهاتف المستقبِل إلى مساحة فارغة كافية، ويتحقق من ذلك قبل إرسال أي شيء.</p>
+
+      <h3>النقل بطيء</h3>
+      <p>تعتمد السرعة على شبكة الواي فاي وعلى الهاتفين. اقترب من الراوتر، أو ابتعد عن شبكة يستخدمها كثيرون في الوقت نفسه، أو جرّب نقطة اتصال (<a href="#ar-hotspot">القسم 4</a>).</p>
+    </section>
+
+    <section id="ar-messages">
+      <h2>6. رسائل قد تظهر لك</h2>
+      <p>واجهة التطبيق بالإنجليزية حالياً، لذلك تظهر الرسائل هنا كما هي على الشاشة.</p>
+
+      <p class="msg" lang="en" dir="ltr">… files are already on this phone</p>
+      <p>ناولني يتذكر ما استلمه هذا الهاتف من قبل، ويتعرّف على هذه الملفات قبل إرسالها. اختر <span class="ui" lang="en" dir="ltr">Skip them</span> (تخطَّها)، أو <span class="ui" lang="en" dir="ltr">Receive again as copies</span> (استلمها مرة أخرى كنُسخ)، أو <span class="ui" lang="en" dir="ltr">Replace the old files</span> (استبدل الملفات القديمة). والتصرف الافتراضي تجده في <span class="ui" lang="en" dir="ltr">Settings</span> ← <span class="ui" lang="en" dir="ltr">When a file was already received</span>.</p>
+
+      <p class="msg" lang="en" dir="ltr">Stopped for your safety. The device that answered is not the phone this app expected: its security key is different.</p>
+      <p>لكل هاتف مفتاح أمان خاص به، وناولني يتذكر مفتاح كل هاتف أرسلت إليه. والهاتف الآخر لديه الآن مفتاح مختلف. السبب عادةً أن ناولني حُذف ثم ثُبّت عليه من جديد، أو أن بياناته مُسحت. وقد يعني أيضاً أن جهازاً آخر ردّ بدلاً منه. لم يُرسَل أي شيء.</p>
+      <p>لترسل إليه من جديد، امسح رمز <span lang="en" dir="ltr">QR</span> الظاهر على شاشة <span class="ui" lang="en" dir="ltr">Receive</span> عنده. بعدها يتذكر التطبيق المفتاح الجديد.</p>
+
+      <p class="msg" lang="en" dir="ltr">Be careful: a device with this name sent files before, but its security key was different.</p>
+      <p>الفحص نفسه، على الهاتف المستقبِل. وهو أمر طبيعي إذا ثبّت المرسِل ناولني من جديد. اضغط <span class="ui" lang="en" dir="ltr">Accept</span> فقط إذا كنت تعرف مَن يرسل.</p>
+
+      <p class="msg" lang="en" dir="ltr">Nobody accepted in time.</p>
+      <p>يعرض الهاتف المستقبِل الملفات وينتظر الضغط على <span class="ui" lang="en" dir="ltr">Accept</span>. أرسل مرة أخرى، واقبل على الهاتف الآخر.</p>
+
+      <p class="msg" lang="en" dir="ltr">Not enough free space on this phone. · The other phone does not have enough free space.</p>
+      <p>وفّر مساحة على الهاتف المستقبِل، أو أرسل ملفات أقل في المرة الواحدة.</p>
+
+      <p class="msg" lang="en" dir="ltr">The other phone uses a version that is not compatible. Update both apps.</p>
+      <p>حدّث ناولني على الهاتفين من <span lang="en" dir="ltr">Google Play</span> و<span lang="en" dir="ltr">App Store</span>.</p>
+
+      <p class="msg" lang="en" dir="ltr">The other phone is busy with another transfer.</p>
+      <p>انتظر حتى ينتهي ذلك النقل، ثم أرسل مرة أخرى.</p>
+    </section>
+
+    <section id="ar-privacy">
+      <h2>7. الخصوصية</h2>
+      <ul>
+        <li>بلا حساب، بلا إعلانات، بلا تحليلات. المطوّر لا يستلم أي بيانات من التطبيق.</li>
+        <li>تذهب الملفات فقط إلى الهاتف الذي تختاره، وكل اتصال بين الهاتفين مشفّر.</li>
+        <li>ترى الهواتف الأخرى اسم هاتفك. يمكنك تغييره من <span class="ui" lang="en" dir="ltr">Settings</span> ← <span class="ui" lang="en" dir="ltr">Name of this phone</span>.</li>
+        <li>لحذف عملية نقل من القائمة، افتحها في <span class="ui" lang="en" dir="ltr">History</span> واضغط <span class="ui" lang="en" dir="ltr">Remove from history</span>. ولحذف أجزاء النقل غير المكتمل، افتح <span class="ui" lang="en" dir="ltr">Settings</span> ← <span class="ui" lang="en" dir="ltr">Incomplete transfers</span> ← <span class="ui" lang="en" dir="ltr">Delete them</span>.</li>
+      </ul>
+      <p>التفاصيل في <a href="../#ar">سياسة الخصوصية</a>.</p>
+    </section>
+
+    <section id="ar-requirements">
+      <h2>8. المتطلبات</h2>
+      <ul>
+        <li>أندرويد 8.0 أو أحدث.</li>
+        <li>آيفون أو آيباد بنظام iOS أو iPadOS 17 أو أحدث.</li>
+        <li>ناولني مثبّت على الجهازين.</li>
+        <li>مجاني، بلا إعلانات وبلا مشتريات داخل التطبيق.</li>
+        <li>واجهة التطبيق بالإنجليزية حالياً. وهذه الصفحة بالعربية والإنجليزية.</li>
+      </ul>
+    </section>
+
+    <section id="ar-contact">
+      <h2>9. التواصل</h2>
+      <div class="contact">
+        <p>اكتب إلى <a href="mailto:youssefagagg@gmail.com?subject=Nawilni%20support" lang="en" dir="ltr">youssefagagg@gmail.com</a>. ويفيد أن تذكر:</p>
+        <ul>
+          <li>الهاتفين: الطراز، وإصدار أندرويد أو iOS؛</li>
+          <li>إصدار ناولني، في أسفل شاشة <span class="ui" lang="en" dir="ltr">Settings</span>؛</li>
+          <li>ما فعلته، وما حدث؛</li>
+          <li>نص الرسالة كما ظهرت، أو لقطة شاشة.</li>
+        </ul>
+        <p>ناولني من تطوير <span lang="en" dir="ltr">Youssef Agagg</span>.</p>
+      </div>
+    </section>
+  </article>
+
+</div>
+
+<script>
+  // Shows one language at a time. Without this script the page shows both.
+  (function () {
+    var root = document.documentElement;
+    var articles = { en: document.getElementById('en'), ar: document.getElementById('ar') };
+    var titles = { en: 'Help & Support – Nawilni', ar: 'المساعدة والدعم – ناولني' };
+    var links = document.querySelectorAll('.langs a');
+
+    // The language in the address wins (#en, #ar, or a section such as #ar-find);
+    // otherwise the language of the browser.
+    function wanted() {
+      var lang = location.hash.slice(1).split('-')[0];
+      if (articles[lang]) return lang;
+      var first = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+      return /^ar\b/i.test(first) ? 'ar' : 'en';
+    }
+
+    function show(lang) {
+      for (var key in articles) articles[key].hidden = key !== lang;
+      root.lang = lang;
+      root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.title = titles[lang];
+      for (var i = 0; i < links.length; i++) {
+        if (links[i].getAttribute('data-lang') === lang) links[i].setAttribute('aria-current', 'true');
+        else links[i].removeAttribute('aria-current');
+      }
+    }
+
+    // A link to a section: scroll to it once its language is shown. A link to a language: the top.
+    function follow() {
+      show(wanted());
+      var id = location.hash.slice(1);
+      var target = id.indexOf('-') > 0 && document.getElementById(id);
+      if (target) target.scrollIntoView();
+      else window.scrollTo(0, 0);
+    }
+
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function (event) {
+        event.preventDefault();          // switch in place, without a jump down the page
+        var lang = this.getAttribute('data-lang');
+        history.replaceState(null, '', '#' + lang);
+        show(lang);
+        window.scrollTo(0, 0);
+      });
+    }
+    window.addEventListener('hashchange', follow);
+    show(wanted());
+    if (location.hash.indexOf('-') > 0) follow();
+  })();
+</script>
+</body>
+</html>
